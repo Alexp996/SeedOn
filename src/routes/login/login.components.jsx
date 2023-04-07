@@ -1,108 +1,45 @@
-// import './login.style.scss';
-// import { Link } from 'react-router-dom';
-//
-// const verify = () => {
-//   const email = document.querySelector('.email').value;
-//   const password = document.querySelector('.password').value;
-//   if (email === 'as@as' && password === 'asd') {
-//     <Link to="/home" />;
-//   } else {
-//     alert('Password or email not correctly');
-//   }
-// };
-//
-// const Login = () => {
-//   return (
-//     <div className="wrapper">
-//       <div className="form-box login">
-//         <h2>Login</h2>
-//         <form action="#">
-//           <div className="input-box">
-//             <span className="input"></span>
-//             <input className="email" type="email" required></input> <br />
-//             <label> Email</label>
-//           </div>
-//           <div className="input-box">
-//             <span className="input"></span>
-//             <input className="password" type="password" required></input>
-//             <br />
-//             <label> Password</label>
-//           </div>
-//           <button onClick={verify} type="submit" className="btn">
-//             Login In
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-// export default Login;
-
+import './login.style.scss';
 import { useState } from 'react';
-import styles from './LoginForm.module.css';
 
-const LoginForm = (props) => {
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
+const defaultFormFields = {
+  email: '',
+  password: '',
+};
 
-  const onUpdateField = (e) => {
-    const nextFormState = {
-      ...form,
-      [e.target.name]: e.target.value,
-    };
-    setForm(nextFormState);
+const SingUp = () => {
+  const [formFields, setFormFields] = useState(defaultFormFields);
+  const { email, password } = formFields;
+
+  console.log(formFields);
+  const handlerChange = (event) => {
+    const { name, value } = event.target;
+    setFormFields({ ...formFields, [name]: value });
   };
-
-  const onSubmitForm = (e) => {
-    e.preventDefault();
-    alert(JSON.stringify(form, null, 2));
-  };
-
   return (
-    <form className={styles.form} onSubmit={onSubmitForm}>
-      <div className={styles.formGroup}>
-        <label className={styles.formLabel}>Email</label>
+    <div className="wrapper">
+      <form onSubmit={() => {}}>
+        <label>Email</label>
         <input
-          className={styles.formField}
           type="text"
-          aria-label="Email field"
+          required
+          onChange={handlerChange}
           name="email"
-          value={form.email}
-          onChange={onUpdateField}
+          value={email}
         />
-      </div>
-      <div className={styles.formGroup}>
-        <label className={styles.formLabel}>Password</label>
+        <br />
+        <label>Password</label>
         <input
-          className={styles.formField}
           type="password"
-          aria-label="Password field"
+          required
+          onChange={handlerChange}
           name="password"
-          value={form.password}
-          onChange={onUpdateField}
+          value={password}
         />
-      </div>
-      <div className={styles.formGroup}>
-        <label className={styles.formLabel}>Confirm Password</label>
-        <input
-          className={styles.formField}
-          type="password"
-          aria-label="Confirm password field"
-          name="confirmPassword"
-          value={form.confirmPassword}
-          onChange={onUpdateField}
-        />
-      </div>
-      <div className={styles.formActions}>
-        <button className={styles.formSubmitBtn} type="submit">
-          Login
-        </button>
-      </div>
-    </form>
+        <br />
+        <button type="submit">Sign Up!</button>
+      </form>
+    </div>
   );
 };
 
-export default LoginForm;
+export default SingUp;
