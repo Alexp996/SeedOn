@@ -1,22 +1,21 @@
 import Home from './routes/home/home.components';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Navigation from './routes/navigation/navigation.components';
-import Login from './routes/login/login.components';
+import Login from './routes/login/login';
+import Register from './routes/register/register';
+import ProtectedRoute from './routes/ProtectionLogOut/protectedRoute';
 
 const App = () => {
-  const Shop = () => {
-    return <h1>You don't have money</h1>;
-  };
-
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>
-        <Route index element={<Login />}></Route>
-        <Route path="/home" element={<Home />}></Route>
-        <Route path="/shop" element={<Shop />}></Route>
+        <Route path="/" element={<ProtectedRoute />}>
+          <Route path="/home" element={<Home />}></Route>
+        </Route>
       </Route>
+      <Route path="/register" element={<Register />}></Route>
+      <Route path="/login" element={<Login />}></Route>
     </Routes>
   );
 };
-
 export default App;
