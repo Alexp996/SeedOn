@@ -1,5 +1,6 @@
 import CategoryContainer from '../../components/category-container/category-container.components';
 import { Outlet } from 'react-router-dom';
+import './home.scss';
 
 const Home = () => {
   const userName = JSON.parse(localStorage.getItem('user'));
@@ -33,7 +34,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Welcome, Mr. {userName.name}</h1>
+      <h1 className="welcome-title">Welcome, {userName.name}</h1>
       <CategoryContainer key={categories.id} categories={categories} />;
       <Outlet />
     </div>

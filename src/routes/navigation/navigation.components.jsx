@@ -2,14 +2,21 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
 import './navigation.style.scss';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/contexts.component';
 
 const Navigation = () => {
   const navigate = useNavigate();
-  // const userName = JSON.parse(localStorage.getItem('user'));
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
   const handleLogOut = () => {
+    setCurrentUser(null);
     localStorage.removeItem('loggedin');
     navigate('/login');
   };
+
+  //this currentUser will be null bcs in UserContext, the default value is null
+  console.log('navigation', currentUser);
   return (
     <div>
       <div className="navigation">
@@ -19,9 +26,10 @@ const Navigation = () => {
           </div>
         </Link>
         <div className="nav-links-container">
-          <Link to="/home" className="nav-link">
+          <button to="/home" className="nav-link">
             Home
-          </Link>
+          </button>
+
           <button onClick={handleLogOut} className="nav-link">
             Log Out
           </button>
