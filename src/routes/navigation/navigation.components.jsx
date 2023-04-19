@@ -2,12 +2,17 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
 import './navigation.style.scss';
+
+import CartIcon from '../../components/cart-icon/cart-icon';
+import CartDropdown from '../../components/cart-dropdown/cart-dropdown';
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/contexts.component';
+import { CartContext } from '../../contexts/cart.context';
 
 const Navigation = () => {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { isCartOpen } = useContext(CartContext);
 
   const handleLogOut = () => {
     setCurrentUser(null);
@@ -26,14 +31,19 @@ const Navigation = () => {
           </div>
         </Link>
         <div className="nav-links-container">
-          <button to="/home" className="nav-link">
+          <Link to="/home" className="nav-link">
             Home
-          </button>
+          </Link>
+          <Link to="/shop" className="nav-link">
+            Shop
+          </Link>
 
           <button onClick={handleLogOut} className="nav-link">
             Log Out
           </button>
+          <CartIcon />
         </div>
+        {isCartOpen && <CartDropdown />}
       </div>
       <Outlet />
     </div>

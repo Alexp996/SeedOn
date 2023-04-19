@@ -22,8 +22,16 @@
       padding: 10px 15px;
       margin-right: 10px;
       cursor: pointer;
-      border-radius: 15px;
+      border: 2px solid darkgrey;
+      background-color: #b6b3b3;
+      border-radius: 20px;
       color: black;
+      font-size: 15px;
+      text-decoration: none;
+      transition: 0.3s ease;
+      }
+    .nav-link:hover{
+      background-color: #c4c4c4;
     }
   }
 
