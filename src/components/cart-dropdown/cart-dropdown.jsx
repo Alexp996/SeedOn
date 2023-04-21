@@ -1,12 +1,13 @@
 import './cart-dropdown.scss';
 import Button from '../button/button';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 import { useNavigate } from 'react-router-dom';
 import CartItem from '../cart-item/cart-item';
 const CartDropdown = () => {
   const { cartItems } = useContext(CartContext);
   const navigate = useNavigate();
+
   const goCheckoutHandler = () => {
     navigate('/checkout');
   };

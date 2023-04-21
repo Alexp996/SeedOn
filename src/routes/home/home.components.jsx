@@ -1,6 +1,7 @@
-import CategoryContainer from '../../components/category-container/category-container.components';
+import CategoryContainer from '../../components/directory/directory.components';
 import { Outlet } from 'react-router-dom';
 import './home.scss';
+import SHOP_DATA from '../../shop-data2';
 
 const Home = () => {
   const userName = JSON.parse(localStorage.getItem('user'));
