@@ -1,11 +1,12 @@
 import './register.scss';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../../contexts/contexts.component';
+
+import {setCurrentUser} from '../../store/user/user.action'
 
 const Register = () => {
   const navigate = useNavigate();
-  const { setCurrentUser } = useContext(UserContext);
+
 
   const [input, setInput] = useState({
     name: '',
@@ -17,7 +18,7 @@ const Register = () => {
     setInput({ ...input, [name]: value });
   };
 
-  //to store values local storage bellow
+  //to store values in localStorage bellow
   const handlerRegister = (e) => {
     e.preventDefault();
     // not sure about that

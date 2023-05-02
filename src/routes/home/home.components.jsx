@@ -36,7 +36,7 @@ const Home = () => {
   return (
     <div>
       <h1 className="welcome-title">Welcome, {userName.name}</h1>
-      <CategoryContainer key={categories.id} categories={categories} />;
+      <CategoryContainer key={categories.id} categories={categories} />
       <Outlet />
     </div>
   );

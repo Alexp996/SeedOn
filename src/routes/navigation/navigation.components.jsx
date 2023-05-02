@@ -6,12 +6,15 @@ import './navigation.style.scss';
 import CartIcon from '../../components/cart-icon/cart-icon';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown';
 import { useContext } from 'react';
-import { UserContext } from '../../contexts/contexts.component';
+
 import { CartContext } from '../../contexts/cart.context';
+
+import { setCurrentUser } from '../../store/user/user.action';
 
 const Navigation = () => {
   const navigate = useNavigate();
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+
   const { isCartOpen } = useContext(CartContext);
 
   const handleLogOut = () => {
@@ -20,8 +23,6 @@ const Navigation = () => {
     navigate('/login');
   };
 
-  //this currentUser will be null bcs in UserContext, the default value is null
-  console.log('navigation', currentUser);
   return (
     <div>
       <div className="navigation">
@@ -31,13 +32,12 @@ const Navigation = () => {
           </div>
         </Link>
         <div className="nav-links-container">
-          <Link to="/home" className="nav-link">
+          <Link to="/" className="nav-link">
             Home
           </Link>
           <Link to="/shop" className="nav-link">
             Shop
           </Link>
-
           <button onClick={handleLogOut} className="nav-link">
             Log Out
           </button>
