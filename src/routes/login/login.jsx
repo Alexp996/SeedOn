@@ -1,14 +1,22 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+
 const Login = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState({
     email: '',
     password: '',
   });
+
   const handlerLogin = (e) => {
     e.preventDefault();
     const loggedUser = JSON.parse(localStorage.getItem('user'));
+
+    if (!loggedUser) {
+      alert('No user found. Please register first.');
+      return;
+    }
+
     if (
       input.email === loggedUser.email &&
       input.password === loggedUser.password
@@ -19,6 +27,7 @@ const Login = () => {
       alert('Wrong email or password!');
     }
   };
+
   return (
     <div>
       <form onSubmit={handlerLogin}>
@@ -42,6 +51,7 @@ const Login = () => {
             <br />
             <input
               type="password"
+              required
               name="password"
               value={input.password}
               onChange={(e) =>
@@ -49,7 +59,7 @@ const Login = () => {
               }
             />
           </div>
-          <button type="submit">Sign Up!</button>
+          <button type="submit">Login</button>
           <div>
             Don't have an account?
             <Link to="/register">
